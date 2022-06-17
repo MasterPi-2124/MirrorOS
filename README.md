@@ -1,19 +1,14 @@
-# pi-gen
+# MirrorOS
 
-Tool used to create Raspberry Pi OS images. (Previously known as Raspbian).
+Tool used to create MirrorOS images, pre-compipled with image processing. Forked from [pi-gen](https://github.com/RPi-Distro/pi-gen).
 
 
 ## Dependencies
 
-pi-gen runs on Debian-based operating systems. Currently it is only supported on
-either Debian Buster or Ubuntu Xenial and is known to have issues building on
-earlier releases of these systems. On other Linux distributions it may be possible
-to use the Docker build described below.
-
-To install the required dependencies for `pi-gen` you should run:
+The tool should be run in Debian systems, and pre-installed with these packages:
 
 ```bash
-apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
+sudo apt-get install coreutils quilt parted qemu-user-static debootstrap zerofree zip \
 dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc \
 qemu-utils kpartx gpg pigz
 ```
@@ -23,24 +18,22 @@ package is `<tool>[:<debian-package>]`.
 
 ## Getting started with building your images
 
-Getting started is as simple as cloning this repository on your build machine. You
-can do so with:
+There are 2 ways to build the image:
+1. Build manually
 
+The image can be build by cloning the repo and run file `build.sh` as following:
 ```bash
-git clone --depth 1 https://github.com/RPI-Distro/pi-gen.git
+git clone https://github.com/MasterPi-2124/MirrorOS
+cd MirrorOS
+sudo bash build.sh -c config
 ```
+with `config` is the config file with parameters in detail below. The image will be stored in `deploy/` by default. You can change the directory in config file.
 
-Using `--depth 1` with `git clone` will create a shallow clone, only containing
-the latest revision of the repository. Do not do this on your development machine.
+2. Github Actions
 
-Also, be careful to clone the repository to a base path **NOT** containing spaces.
-This configuration is not supported by debootstrap and will lead to `pi-gen` not
-running.
+There also an action of building the image. Go to [Actions](https://github.com/MasterPi-2124/MirrorOS/actions) tab and download the artifact.
 
-After cloning the repository, you can move to the next step and start configuring
-your build.
-
-## Config
+## Config file
 
 Upon execution, `build.sh` will source the file `config` in the current
 working directory.  This bash shell fragment is intended to set needed
@@ -265,55 +258,6 @@ The following process is followed to build images:
 
 It is recommended to examine build.sh for finer details.
 
-
-## Docker Build
-
-Docker can be used to perform the build inside a container. This partially isolates
-the build from the host system, and allows using the script on non-debian based
-systems (e.g. Fedora Linux). The isolate is not complete due to the need to use
-some kernel level services for arm emulation (binfmt) and loop devices (losetup).
-
-To build:
-
-```bash
-vi config         # Edit your config file. See above.
-./build-docker.sh
-```
-
-If everything goes well, your finished image will be in the `deploy/` folder.
-You can then remove the build container with `docker rm -v pigen_work`
-
-If something breaks along the line, you can edit the corresponding scripts, and
-continue:
-
-```bash
-CONTINUE=1 ./build-docker.sh
-```
-
-To examine the container after a failure you can enter a shell within it using:
-
-```bash
-sudo docker run -it --privileged --volumes-from=pigen_work pi-gen /bin/bash
-```
-
-After successful build, the build container is by default removed. This may be undesired when making incremental changes to a customized build. To prevent the build script from remove the container add
-
-```bash
-PRESERVE_CONTAINER=1 ./build-docker.sh
-```
-
-There is a possibility that even when running from a docker container, the
-installation of `qemu-user-static` will silently fail when building the image
-because `binfmt-support` _must be enabled on the underlying kernel_. An easy
-fix is to ensure `binfmt-support` is installed on the host machine before
-starting the `./build-docker.sh` script (or using your own docker build
-solution).
-
-### Passing arguments to Docker
-
-When the docker image is run various required command line arguments are provided.  For example the system mounts the `/dev` directory to the `/dev` directory within the docker container.  If other arguments are required they may be specified in the PIGEN_DOCKER_OPTS environment variable.  For example setting `PIGEN_DOCKER_OPTS="--add-host foo:192.168.0.23"` will add '192.168.0.23   foo' to the `/etc/hosts` file in the container.  The `--name`
-and `--privileged` options are already set by the script and should not be redefined.
-
 ## Stage Anatomy
 
 ### Raspbian Stage Overview
@@ -404,117 +348,3 @@ follows:
  * Rebuild just the last stage using ```sudo CLEAN=1 ./build.sh```
  * Once you're happy with the image you can remove the SKIP_IMAGES files and
    export your image to test
-
-# Regarding Qcow2 image building
-
-### Get infos about the image in use
-
-If you issue the two commands shown in the example below in a second command shell while a build
-is running you can find out, which network block device is currently being used and which qcow2 image
-is bound to it.
-
-Example:
-
-```bash
-root@build-machine:~/$ lsblk | grep nbd
-nbd1      43:32   0    10G  0 disk
-├─nbd1p1  43:33   0    10G  0 part
-└─nbd1p1 253:0    0    10G  0 part
-
-root@build-machine:~/$ ps xa | grep qemu-nbd
- 2392 pts/6    S+     0:00 grep --color=auto qemu-nbd
-31294 ?        Ssl    0:12 qemu-nbd --discard=unmap -c /dev/nbd1 image-stage4.qcow2
-```
-
-Here you can see, that the qcow2 image `image-stage4.qcow2` is currently connected to `/dev/nbd1` with
-the associated partition map `/dev/mapper/nbd1p1`. Don't worry that `lsblk` shows two entries. It is totally fine, because the device map is accessible via `/dev/mapper/nbd1p1` and also via `/dev/dm-0`. This is all part of the device mapper functionality of the kernel. See `dmsetup` for further information.
-
-### Mount a qcow2 image
-
-If you want to examine the content of a a single stage, you can simply mount the qcow2 image found in the `WORK_DIR` directory with the tool `./imagetool.sh`.
-
-See `./imagetool.sh -h` for further details on how to use it.
-
-### Disconnect an image if something went wrong
-
-It can happen, that your build stops in case of an error. Normally `./build.sh` should handle image disconnection appropriately, but in rare cases, especially during a Docker build, this may not work as expected. If that happens, starting a new build will fail and you may have to disconnect the image and/or device yourself.
-
-A typical message indicating that there are some orphaned device mapper entries is this:
-
-```
-Failed to set NBD socket
-Disconnect client, due to: Unexpected end-of-file before all bytes were read
-```
-
-If that happens go through the following steps:
-
-1. First, check if the image is somehow mounted to a directory entry and umount it as you would any other block device, like i.e. a hard disk or USB stick.
-
-2. Second, to disconnect an image from `qemu-nbd`, the QEMU Disk Network Block Device Server, issue the following command (be sure to change the device name to the one actually used):
-
-   ```bash
-   sudo qemu-nbd -d /dev/nbd1
-   ```
-
-   Note: if you use Docker build, normally no active `qemu-nbd` process exists anymore as it will be terminated when the Docker container stops.
-
-3. To disconnect a device partition map from the network block device, execute:
-
-   ```bash
-   sudo kpartx -d /dev/nbd1
-   or
-   sudo ./imagetool.sh --cleanup
-   ```
-
-   Note: The `imagetool.sh` command will cleanup any /dev/nbdX that is not connected to a running `qemu-nbd` daemon. Be careful if you use network block devices for other tasks utilizing NBDs on your build machine as well.
-
-Now you should be able to start a new build without running into troubles again. Most of the time, especially when using Docker build, you will only need no. 3 to get everything up and running again.
-
-# Troubleshooting
-
-## `64 Bit Systems`
-Please note there is currently an issue when compiling with a 64 Bit OS. See
-https://github.com/RPi-Distro/pi-gen/issues/271
-
-A 64 bit image can be generated from the `arm64` branch in this repository. Just
-replace the command from [this section](#getting-started-with-building-your-images)
-by the one below, and follow the rest of the documentation:
-```bash
-git clone --depth 1 --branch arm64 https://github.com/RPI-Distro/pi-gen.git
-```
-
-If you want to generate a 64 bits image from a Raspberry Pi running a 32 bits
-version, you need to add `arm_64bit=1` to your `config.txt` file and reboot your
-machine. This will restart your machine with a 64 bits kernel. This will only
-work from a Raspberry Pi with a 64-bit capable processor (i.e. Raspberry Pi Zero
-2, Raspberry Pi 3 or Raspberry Pi 4).
-
-
-## `binfmt_misc`
-
-Linux is able execute binaries from other architectures, meaning that it should be
-possible to make use of `pi-gen` on an x86_64 system, even though it will be running
-ARM binaries. This requires support from the [`binfmt_misc`](https://en.wikipedia.org/wiki/Binfmt_misc)
-kernel module.
-
-You may see one of the following errors:
-
-```
-update-binfmts: warning: Couldn't load the binfmt_misc module.
-```
-```
-W: Failure trying to run: chroot "/pi-gen/work/test/stage0/rootfs" /bin/true
-and/or
-chroot: failed to run command '/bin/true': Exec format error
-```
-
-To resolve this, ensure that the following files are available (install them if necessary):
-
-```
-/lib/modules/$(uname -r)/kernel/fs/binfmt_misc.ko
-/usr/bin/qemu-arm-static
-```
-
-You may also need to load the module by hand - run `modprobe binfmt_misc`.
-
-If you are using WSL to build you may have to enable the service `sudo update-binfmts --enable`
