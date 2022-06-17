@@ -1,0 +1,22 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build
+        run: bash build.sh -c config
+      
+      - name: Upload image
+        uses: actions/upload-artifact@v3
+        with:
+          name: MirrorOS
+          path: deploy/MirrorOS-lite.img.gz
+          if-no-files-found: error

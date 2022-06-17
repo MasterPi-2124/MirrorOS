@@ -201,9 +201,8 @@ if [ -z "${IMG_NAME}" ]; then
 fi
 
 export USE_QEMU="${USE_QEMU:-0}"
-export IMG_DATE="${IMG_DATE:-"$(date +%Y-%m-%d)"}"
-export IMG_FILENAME="${IMG_FILENAME:-"${IMG_DATE}-${IMG_NAME}"}"
-export ARCHIVE_FILENAME="${ARCHIVE_FILENAME:-"image_${IMG_DATE}-${IMG_NAME}"}"
+export IMG_FILENAME="${IMG_FILENAME:-"${IMG_NAME}"}"
+export ARCHIVE_FILENAME="${ARCHIVE_FILENAME:-"${IMG_NAME}"}"
 
 export SCRIPT_DIR="${BASE_DIR}/scripts"
 export WORK_DIR="${WORK_DIR:-"${BASE_DIR}/work/${IMG_NAME}"}"

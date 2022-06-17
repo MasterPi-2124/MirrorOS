@@ -7,3 +7,4 @@ libcamera-apps
 lxde-common
 lxsession
 openbox lxdm
+gcc g++ make
