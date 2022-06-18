@@ -8,7 +8,7 @@ on_chroot << EOF
 	curl -sl https://deb.nodesource.com/setup_16.x | sudo -E bash
 	apt install -y nodejs 
 	npm install -g pm2
-	print ${ls -a}
+	echo $(ls -a)
 EOF
 
 # Clone and build MagicMirror
