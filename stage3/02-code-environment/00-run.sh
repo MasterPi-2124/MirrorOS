@@ -4,7 +4,7 @@
 
 on_chroot << EOF
 	python3 -m pip install --upgrade pip
-	python3 -m pip install tensorflow keras numpy opencv-python regex imutils datetime
+	python3 -m pip install keras numpy opencv-python regex imutils datetime
 	curl -sl https://deb.nodesource.com/setup_16.x | sudo -E bash
 	apt install -y nodejs 
 	npm install -g pm2
