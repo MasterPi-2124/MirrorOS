@@ -15,3 +15,13 @@ libcamera-tools
 libcamera-apps
 libatlas-base-dev
 python3-pip
+lxde
+xinit
+xserver-xorg
+xdg-utils
+menu-xdg
+zenity
+gvfs-backends gvfs-fuse
+gnome-themes-standard gnome-icon-theme
+gnome-keyring
+lxtask
