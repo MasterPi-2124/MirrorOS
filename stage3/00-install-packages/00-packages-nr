@@ -1,4 +1,4 @@
-lxde-common
+
 xinit
 xserver-xorg xdg-utils
 menu-xdg

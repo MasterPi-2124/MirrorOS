@@ -9,25 +9,18 @@ on_chroot << EOF
 	apt install -y nodejs 
 	npm install -g pm2
 	echo $(ls -a)
+	cd ~
+	git clone https://github.com/MichMich/MagicMirror 
+	cd MagicMirror
+	npm install --only=prod --omit=dev
+	cp config/config.js.sample  config/config.js
+	cd modules
+	git clone https://github.com/bugsounet/EXT-Detector
+	git clone https://github.com/bugsounet/MMM-GoogleAssistant
+	git clone https://github.com/bugsounet/Gateway
+	git clone https://github.com/bugsounet/EXT-Alert
+	cd EXT-Detector && npm install
+	cd ../Gateway && npm install
+	cd ../EXT-Alert && npm install
+	cd ../MMM-GoogleAssistant && npm install
 EOF
-
-# Clone and build MagicMirror
-cd "${ROOTFS_DIR}/home/${FIRST_USER_NAME}"
-git clone https://github.com/MichMich/MagicMirror 
-cd MagicMirror
-
-npm install --only=prod --omit=dev
-
-# Add default config file
-cp config/config.js.sample  config/config.js
-
-# Install Google Assistant
-cd modules
-git clone https://github.com/bugsounet/EXT-Detector
-git clone https://github.com/bugsounet/MMM-GoogleAssistant
-git clone https://github.com/bugsounet/Gateway
-git clone https://github.com/bugsounet/EXT-Alert
-cd EXT-Detector && npm install
-cd ../Gateway && npm install
-cd ../EXT-Alert && npm install
-cd ../MMM-GoogleAssistant && npm install
