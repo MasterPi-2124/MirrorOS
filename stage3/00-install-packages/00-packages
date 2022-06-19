@@ -1,18 +1,15 @@
 gstreamer1.0-x gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav
-gtk2-engines alsa-utils
-git
+qpdfview gtk2-engines alsa-utils
 desktop-base
-policykit-1 gvfs
+git
+policykit-1
+gvfs
 rfkill
-rpi-chromium-mods
-libcamera-tools
-libcamera-apps
-libatlas-base-dev
-gcc g++ make
-python3-pip
-chromium-browser
-obconf
-arandr
+chromium-browser rpi-chromium-mods
 gldriver-test
 fonts-droid-fallback
 fonts-liberation2
+obconf
+arandr
+libcamera-tools
+libcamera-apps

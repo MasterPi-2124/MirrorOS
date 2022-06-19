@@ -1,10 +1,7 @@
-lxde
-xinit
-xserver-xorg
-xdg-utils
-menu-xdg
-zenity
+xserver-xorg xinit
+mousepad
+lxde lxtask menu-xdg
+zenity xdg-utils
 gvfs-backends gvfs-fuse
-gnome-themes-standard gnome-icon-theme
+lightdm gnome-themes-standard gnome-icon-theme
 gnome-keyring
-lxtask
