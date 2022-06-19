@@ -13,3 +13,5 @@ obconf
 arandr
 libcamera-tools
 libcamera-apps
+libatlas-base-dev
+python3-pip
