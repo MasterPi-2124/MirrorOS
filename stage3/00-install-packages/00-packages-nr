@@ -3,3 +3,8 @@ xinit
 xserver-xorg
 xdg-utils
 menu-xdg
+zenity
+gvfs-backends gvfs-fuse
+gnome-themes-standard gnome-icon-theme
+gnome-keyring
+lxtask

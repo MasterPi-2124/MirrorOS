@@ -1,7 +1,8 @@
-alsa-utils
+gstreamer1.0-x gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav
+gtk2-engines alsa-utils
 git
 desktop-base
-policykit-1
+policykit-1 gvfs
 rfkill
 rpi-chromium-mods
 libcamera-tools
@@ -12,3 +13,6 @@ python3-pip
 chromium-browser
 obconf
 arandr
+gldriver-test
+fonts-droid-fallback
+fonts-liberation2

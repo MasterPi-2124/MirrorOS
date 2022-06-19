@@ -21,5 +21,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: MirrorOS
-          path: deploy/MirrorOS-lite.img.gz
+          path: deploy/*.img.gz
           if-no-files-found: error
