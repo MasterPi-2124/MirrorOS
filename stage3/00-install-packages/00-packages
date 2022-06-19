@@ -1,7 +1,9 @@
 alsa-utils
 git
+desktop-base
 policykit-1
 rfkill
+rpi-chromium-mods
 libcamera-tools
 libcamera-apps
 libatlas-base-dev

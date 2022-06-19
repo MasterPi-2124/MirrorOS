@@ -1,4 +1,5 @@
 lxde
 xinit
-xserver-xorg xdg-utils
+xserver-xorg
+xdg-utils
 menu-xdg

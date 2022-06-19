@@ -1,2 +1,2 @@
-NOOBS_NAME="Raspberry Pi OS Lite (32-bit)"
-NOOBS_DESCRIPTION="A port of Debian with no desktop environment"
+NOOBS_NAME="Raspberry Pi OS (64-bit)"
+NOOBS_DESCRIPTION="A port of Debian with the Raspberry Pi Desktop"
