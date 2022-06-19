@@ -1,5 +1,5 @@
 gstreamer1.0-x gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-alsa gstreamer1.0-libav
-qpdfview gtk2-engines alsa-utils
+gtk2-engines alsa-utils
 desktop-base
 git
 policykit-1
@@ -15,13 +15,3 @@ libcamera-tools
 libcamera-apps
 libatlas-base-dev
 python3-pip
-lxde
-xinit
-xserver-xorg
-xdg-utils
-menu-xdg
-zenity
-gvfs-backends gvfs-fuse
-gnome-themes-standard gnome-icon-theme
-gnome-keyring
-lxtask
