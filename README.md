@@ -1,3 +1,4 @@
+[![Build](https://github.com/MasterPi-2124/MirrorOS/actions/workflows/build.yml/badge.svg)](https://github.com/MasterPi-2124/MirrorOS/actions/workflows/build.yml)
 # MirrorOS
 
 Tool used to create MirrorOS images, pre-compipled with image processing. Forked from [pi-gen](https://github.com/RPi-Distro/pi-gen).
