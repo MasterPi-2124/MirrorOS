@@ -11,7 +11,12 @@ fonts-droid-fallback
 fonts-liberation2
 obconf
 arandr
+raspberrypi-net-mods
 libcamera-tools
 libcamera-apps
+piwiz
 libatlas-base-dev
 python3-pip
+pprompt
+raspberrypi-ui-mods
+libgles1 libgles2-mesa xcompmgr
