@@ -8,4 +8,4 @@ KEYBOARD_LAYOUT="English (US)"
 TIMEZONE_DEFAULT="Asia/Ho_Chi_Minh"
 FIRST_USER_NAME=pi
 FIRST_USER_PASS=pi
-STAGE_LIST="stage0 stage1 stage2"
+STAGE_LIST="stage0 stage1 stage2 stage3"
