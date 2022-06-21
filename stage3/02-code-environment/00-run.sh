@@ -16,7 +16,6 @@ on_chroot << EOF
 	pip3 install --upgrade setuptools protobuf==3.20.*
 	gdown https://drive.google.com/uc?id=1YpxNubmEL_4EgTrVMu-kYyzAbtyLis29
 	pip3 install tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
-	cd "${ROOTFS_DIR}"/home/"${FIRST_USER_NAME}"
 	git clone https://github.com/MichMich/MagicMirror 
 	cd MagicMirror
 	runuser -l ${FIRST_USER_NAME} -c "npm install --only=prod --omit=dev"
@@ -26,12 +25,11 @@ on_chroot << EOF
 	git clone https://github.com/bugsounet/MMM-GoogleAssistant
 	git clone https://github.com/bugsounet/Gateway
 	git clone https://github.com/bugsounet/EXT-Alert
-	cd /home/"${FIRST_USER_NAME}"/MagicMirror
 	cd EXT-Detector && runuser -l ${FIRST_USER_NAME} -c "npm install"
 	cd ../Gateway && runuser -l ${FIRST_USER_NAME} -c "npm install"
 	cd ../EXT-Alert && runuser -l ${FIRST_USER_NAME} -c "npm install"
 	cd ../MMM-GoogleAssistant && runuser -l ${FIRST_USER_NAME} -c "npm install"
-	cd /home/"${FIRST_USER_NAME}"
+	cd ../..
 	mkdir getFrames && cd getFrames
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/capturev4l2.c
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/Makefile
