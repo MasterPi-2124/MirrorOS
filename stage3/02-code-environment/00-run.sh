@@ -19,17 +19,17 @@ on_chroot << EOF
 	cd /home/"${FIRST_USER_NAME}"
 	git clone https://github.com/MichMich/MagicMirror 
 	cd MagicMirror
-	runuser -l ${FIRST_USER_NAME} -c "npm install --only=prod --omit=dev"
+	runuser -l ${FIRST_USER_NAME} -c "npm install --only=prod --omit=dev --prefix ."
 	wget -O config/config.js https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/config/config.js
 	cd modules
 	git clone https://github.com/bugsounet/EXT-Detector
 	git clone https://github.com/bugsounet/MMM-GoogleAssistant
 	git clone https://github.com/bugsounet/Gateway
 	git clone https://github.com/bugsounet/EXT-Alert
-	cd EXT-Detector && runuser -l ${FIRST_USER_NAME} -c "npm install"
-	cd ../Gateway && runuser -l ${FIRST_USER_NAME} -c "npm install"
-	cd ../EXT-Alert && runuser -l ${FIRST_USER_NAME} -c "npm install"
-	cd ../MMM-GoogleAssistant && runuser -l ${FIRST_USER_NAME} -c "npm install"
+	cd EXT-Detector && runuser -l ${FIRST_USER_NAME} -c "npm install --prefix ."
+	cd ../Gateway && runuser -l ${FIRST_USER_NAME} -c "npm install --prefix ."
+	cd ../EXT-Alert && runuser -l ${FIRST_USER_NAME} -c "npm install --prefix ."
+	cd ../MMM-GoogleAssistant && runuser -l ${FIRST_USER_NAME} -c "npm install --prefix ."
 	cd ../..
 	mkdir getFrames && cd getFrames
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/capturev4l2.c
