@@ -16,6 +16,7 @@ on_chroot << EOF
 	pip3 install --upgrade setuptools protobuf==3.20.*
 	gdown https://drive.google.com/uc?id=1YpxNubmEL_4EgTrVMu-kYyzAbtyLis29
 	pip3 install tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
+	cd /home/"${FIRST_USER_NAME}"
 	git clone https://github.com/MichMich/MagicMirror 
 	cd MagicMirror
 	runuser -l ${FIRST_USER_NAME} -c "npm install --only=prod --omit=dev"
