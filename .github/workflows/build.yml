@@ -12,7 +12,10 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Prepare
-        run: sudo apt install -y coreutils quilt parted debootstrap zerofree zip dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc kpartx gpg pigz qemu-user-static qemu-utils
+        run: |
+          sudo apt update
+          sudo apt install --fix-missing
+          sudo apt install -y coreutils quilt parted debootstrap zerofree zip dosfstools libarchive-tools libcap2-bin grep rsync xz-utils file git curl bc kpartx gpg pigz qemu-user-static qemu-utils
 
       - name: Build
         run: sudo bash build.sh -c config
