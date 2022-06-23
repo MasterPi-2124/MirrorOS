@@ -18,7 +18,9 @@ on_chroot << EOF
 	pip3 install tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
 	cd /home/"${FIRST_USER_NAME}"
 	git clone https://github.com/MichMich/MagicMirror 
-	cd MagicMirror && pwd
+	cd MagicMirror && pwd && ls -lah	
+	usermod -aG sudo ${FIRST_USER_NAME}
+	chmod a+rwx /home/${FIRST_USER_NAME}
 	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install --only=prod --omit=dev"
 	wget -O config/config.js https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/config/config.js
 	cd modules
