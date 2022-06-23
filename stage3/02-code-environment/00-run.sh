@@ -21,17 +21,16 @@ on_chroot << EOF
 	cd MagicMirror && pwd && ls -lah	
 	usermod -aG sudo ${FIRST_USER_NAME}
 	chmod a+rwx /home/${FIRST_USER_NAME}
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install --only=prod --omit=dev"
 	wget -O config/config.js https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/config/config.js
 	cd modules
 	git clone https://github.com/bugsounet/EXT-Detector
 	git clone https://github.com/bugsounet/MMM-GoogleAssistant
 	git clone https://github.com/bugsounet/Gateway
 	git clone https://github.com/bugsounet/EXT-Alert
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror && npm install"
+	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/EXT-Detector && npm install"
+	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/MMM-GoogleAssistant && npm install"
+	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/Gateway && npm install"
+	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/EXT-Alert && npm install"
 	cd /home/"${FIRST_USER_NAME}"
 	mkdir getFrames && cd getFrames
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/capturev4l2.c
