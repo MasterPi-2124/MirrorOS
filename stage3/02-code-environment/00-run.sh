@@ -17,21 +17,8 @@ on_chroot << EOF
 	gdown https://drive.google.com/uc?id=1YpxNubmEL_4EgTrVMu-kYyzAbtyLis29
 	pip3 install tensorflow-2.8.0-cp39-cp39-linux_aarch64.whl
 	cd /home/"${FIRST_USER_NAME}"
-	git clone https://github.com/MichMich/MagicMirror 
-	cd MagicMirror && pwd && ls -lah	
-	usermod -aG sudo ${FIRST_USER_NAME}
-	chmod a+rwx /home/${FIRST_USER_NAME}
-	wget -O config/config.js https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/config/config.js
-	cd modules
-	git clone https://github.com/bugsounet/EXT-Detector
-	git clone https://github.com/bugsounet/MMM-GoogleAssistant
-	git clone https://github.com/bugsounet/Gateway
-	git clone https://github.com/bugsounet/EXT-Alert
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/EXT-Detector && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/MMM-GoogleAssistant && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/Gateway && npm install"
-	runuser -l ${FIRST_USER_NAME} -c "cd /home/"${FIRST_USER_NAME}"/MagicMirror/EXT-Alert && npm install"
-	cd /home/"${FIRST_USER_NAME}"
+	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/setup.sh
+	echo "bash setup.sh" >> .bashrc
 	mkdir getFrames && cd getFrames
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/capturev4l2.c
 	wget https://raw.githubusercontent.com/MasterPi-2124/SmartMirror/master/getFrames/rpi/Makefile
