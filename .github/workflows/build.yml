@@ -19,16 +19,17 @@ jobs:
           echo DISABLE_FIRST_BOOT_USER_RENAME=${{ secrets.DISABLE_FIRST_BOOT_USER_RENAME }} >> config
           echo FIRST_USER_NAME=${{ secrets.FIRST_USER_NAME }} >> config
           echo FIRST_USER_PASS=${{ secrets.FIRST_USER_PASS }} >> config
-          echo GIT_EMAIL="${{ secrets.GIT_EMAIL }}" >> config
-          echo GIT_USERNAME="${{ secrets.GIT_USERNAME }}" >> config
+          echo GIT_EMAIL='${{ secrets.GIT_EMAIL }}' >> config
+          echo GIT_USERNAME='${{ secrets.GIT_USERNAME }}' >> config
           echo IMG_NAME=${{ secrets.IMG_NAME }} >> config
           echo KEYBOARD_KEYMAP=${{ secrets.KEYBOARD_KEYMAP }} >> config
-          echo KEYBOARD_LAYOUT="${{ secrets.KEYBOARD_LAYOUT }}" >> config
+          echo KEYBOARD_LAYOUT='${{ secrets.KEYBOARD_LAYOUT }}' >> config
           echo LOCALE_DEFAULT=${{ secrets.LOCALE_DEFAULT }} >> config
-          echo STAGE_LIST="${{ secrets.STAGE_LIST }}" >> config
+          echo STAGE_LIST='${{ secrets.STAGE_LIST }}' >> config
           echo TARGET_HOSTNAME=${{ secrets.TARGET_HOSTNAME }} >> config
-          echo TIMEZONE_DEFAULT="${{ secrets.TIMEZONE_DEFAULT }}" >> config
-          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
+          echo TIMEZONE_DEFAULT='${{ secrets.TIMEZONE_DEFAULT }}' >> config
+          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> 
+          cat config
 
       - name: send config file
         uses: garygrossgarten/github-action-scp@release
