@@ -11,6 +11,27 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
+      - name: Create config file
+        run: |
+          touch config
+          echo IMG_NAME=${{ secrets.IMG_NAME }} >> config
+          echo DEPLOY_COMPRESSION=${{ secrets.DEPLOY_COMPRESSION }} >> config
+          echo COMPRESSION_LEVEL=${{ secrets.COMPRESSION_LEVEL }} >> config
+          echo LOCALE_DEFAULT=${{ secrets.LOCALE_DEFAULT }} >> config
+          echo TARGET_HOSTNAME=${{ secrets.TARGET_HOSTNAME }} >> config
+          echo KEYBOARD_KEYMAP=${{ secrets.KEYBOARD_KEYMAP }} >> config
+          echo KEYBOARD_LAYOUT=${{ secrets.KEYBOARD_LAYOUT }} >> config
+          echo TIMEZONE_DEFAULT=${{ secrets.TIMEZONE_DEFAULT }} >> config
+          echo FIRST_USER_NAME=${{ secrets.FIRST_USER_NAME }} >> config
+          echo DISABLE_FIRST_BOOT_USER_RENAME=${{ secrets.DISABLE_FIRST_BOOT_USER_RENAME }} >> config
+          echo FIRST_USER_PASS=${{ secrets.FIRST_USER_PASS }} >> config
+          echo STAGE_LIST=${{ secrets.STAGE_LIST }} >> config
+          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
+          echo GIT_USERNAME=${{ secrets.GIT_USERNAME }} >> config
+          echo GIT_EMAIL=${{ secrets.GIT_EMAIL }} >> config
+          pwd
+          cat config
+
       - name: Prepare
         run: |
           sudo apt update
