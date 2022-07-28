@@ -29,8 +29,6 @@ jobs:
           echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
           echo GIT_USERNAME=${{ secrets.GIT_USERNAME }} >> config
           echo GIT_EMAIL=${{ secrets.GIT_EMAIL }} >> config
-          pwd
-          cat config
 
       - name: Prepare
         run: |
