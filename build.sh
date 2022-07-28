@@ -216,6 +216,9 @@ if [ -z "${DEPLOY_COMPRESSION}" ] && [ "${DEPLOY_ZIP:-1}" = "0" ]; then
 	echo "Please update your config file"
 	DEPLOY_COMPRESSION=none
 fi
+
+export GIT_USERNAME
+export GIT_EMAIL
 export DEPLOY_COMPRESSION=${DEPLOY_COMPRESSION:-zip}
 export COMPRESSION_LEVEL=${COMPRESSION_LEVEL:-6}
 export LOG_FILE="${WORK_DIR}/build.log"

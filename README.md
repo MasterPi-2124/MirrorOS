@@ -41,6 +41,13 @@ working directory.  This bash shell fragment is intended to set needed
 environment variables.
 
 The following environment variables are supported:
+ 
+ * `GIT_USERNAME` (Default: unset)
+   The default username for git. Useful for code nerds.
+
+ * `GIT_EMAIL` (Default: unset)
+  The default email for git. Useful for code nerds as above.
+
 
  * `IMG_NAME` **required** (Default: unset)
 

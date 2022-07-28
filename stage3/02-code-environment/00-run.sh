@@ -7,6 +7,8 @@ on_chroot << EOF
 	curl -sl https://deb.nodesource.com/setup_16.x | sudo -E bash
 	apt install -y nodejs libhdf5-dev libc-ares-dev libeigen3-dev libopenblas-dev libblas-dev openmpi-bin libopenmpi-dev gfortran liblapack-dev 
 	npm install --location=global pm2 uuid@latest
+	git config --global user.name "${GIT_USERNAME}"
+	git config --global user.email "${GIT_EMAIL}"
 	pip3 install gdown pybind11
 	pip3 install keras_applications==1.0.8 --no-deps
 	pip3 install keras_preprocessing==1.1.1 --no-deps
