@@ -28,7 +28,7 @@ jobs:
           echo STAGE_LIST='${{ secrets.STAGE_LIST }}' >> config
           echo TARGET_HOSTNAME=${{ secrets.TARGET_HOSTNAME }} >> config
           echo TIMEZONE_DEFAULT='${{ secrets.TIMEZONE_DEFAULT }}' >> config
-          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> 
+          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config
           cat config
 
       - name: send config file
