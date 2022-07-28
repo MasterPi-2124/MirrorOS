@@ -14,21 +14,21 @@ jobs:
       - name: Create config file
         run: |
           touch config.txt
-          echo COMPRESSION_LEVEL=${{ secrets.COMPRESSION_LEVEL }} >> config.txt
-          echo DEPLOY_COMPRESSION=${{ secrets.DEPLOY_COMPRESSION }} >> config.txt
-          echo DISABLE_FIRST_BOOT_USER_RENAME=${{ secrets.DISABLE_FIRST_BOOT_USER_RENAME }} >> config.txt
-          echo FIRST_USER_NAME=${{ secrets.FIRST_USER_NAME }} >> config.txt
-          echo FIRST_USER_PASS=${{ secrets.FIRST_USER_PASS }} >> config.txt
-          echo GIT_EMAIL=\"${{ secrets.GIT_EMAIL }}\" >> config.txt
-          echo GIT_USERNAME=\"${{ secrets.GIT_USERNAME }}\" >> config.txt
-          echo IMG_NAME=${{ secrets.IMG_NAME }} >> config.txt
-          echo KEYBOARD_KEYMAP=${{ secrets.KEYBOARD_KEYMAP }} >> config.txt
-          echo KEYBOARD_LAYOUT=\"${{ secrets.KEYBOARD_LAYOUT }}\" >> config.txt
-          echo LOCALE_DEFAULT=${{ secrets.LOCALE_DEFAULT }} >> config.txt
-          echo STAGE_LIST=\"${{ secrets.STAGE_LIST }}\" >> config.txt
-          echo TARGET_HOSTNAME=${{ secrets.TARGET_HOSTNAME }} >> config.txt
-          echo TIMEZONE_DEFAULT=\"${{ secrets.TIMEZONE_DEFAULT }}\" >> config.txt
-          echo WPA_COUNTRY=${{ secrets.WPA_COUNTRY }} >> config.txt
+          echo "COMPRESSION_LEVEL=${{ secrets.COMPRESSION_LEVEL }}" >> config.txt
+          echo "DEPLOY_COMPRESSION=${{ secrets.DEPLOY_COMPRESSION }}" >> config.txt
+          echo "DISABLE_FIRST_BOOT_USER_RENAME=${{ secrets.DISABLE_FIRST_BOOT_USER_RENAME }}" >> config.txt
+          echo "FIRST_USER_NAME=${{ secrets.FIRST_USER_NAME }}" >> config.txt
+          echo "FIRST_USER_PASS=${{ secrets.FIRST_USER_PASS }}" >> config.txt
+          echo "GIT_EMAIL=\"${{ secrets.GIT_EMAIL }}\"" >> config.txt
+          echo "GIT_USERNAME=\"${{ secrets.GIT_USERNAME }}\"" >> config.txt
+          echo "IMG_NAME=${{ secrets.IMG_NAME }}" >> config.txt
+          echo "KEYBOARD_KEYMAP=${{ secrets.KEYBOARD_KEYMAP }}" >> config.txt
+          echo "KEYBOARD_LAYOUT=\"${{ secrets.KEYBOARD_LAYOUT }}\"" >> config.txt
+          echo "LOCALE_DEFAULT=${{ secrets.LOCALE_DEFAULT }}" >> config.txt
+          echo "STAGE_LIST=\"${{ secrets.STAGE_LIST }}\"" >> config.txt
+          echo "TARGET_HOSTNAME=${{ secrets.TARGET_HOSTNAME }}" >> config.txt
+          echo "TIMEZONE_DEFAULT=\"${{ secrets.TIMEZONE_DEFAULT }}\"" >> config.txt
+          echo "WPA_COUNTRY=${{ secrets.WPA_COUNTRY }}" >> config.txt
           cat config.txt
 
       - name: send config file
