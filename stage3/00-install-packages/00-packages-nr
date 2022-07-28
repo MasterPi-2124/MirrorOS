@@ -1,6 +1,6 @@
 xserver-xorg xinit
 lxde-common lxtask menu-xdg
- xdg-utils
+xdg-utils
 gvfs-backends gvfs-fuse
 lightdm gnome-themes-standard gnome-icon-theme
 gnome-keyring
