@@ -201,9 +201,8 @@ if [ -z "${IMG_NAME}" ]; then
 fi
 
 export USE_QEMU="${USE_QEMU:-0}"
-export IMG_DATE="${IMG_DATE:-"$(date +%Y-%m-%d)"}"
-export IMG_FILENAME="${IMG_FILENAME:-"${IMG_DATE}-${IMG_NAME}"}"
-export ARCHIVE_FILENAME="${ARCHIVE_FILENAME:-"image_${IMG_DATE}-${IMG_NAME}"}"
+export IMG_FILENAME="${IMG_FILENAME:-"${IMG_NAME}"}"
+export ARCHIVE_FILENAME="${ARCHIVE_FILENAME:-"${IMG_NAME}"}"
 
 export SCRIPT_DIR="${BASE_DIR}/scripts"
 export WORK_DIR="${WORK_DIR:-"${BASE_DIR}/work/${IMG_NAME}"}"
@@ -217,6 +216,9 @@ if [ -z "${DEPLOY_COMPRESSION}" ] && [ "${DEPLOY_ZIP:-1}" = "0" ]; then
 	echo "Please update your config file"
 	DEPLOY_COMPRESSION=none
 fi
+
+export GIT_USERNAME
+export GIT_EMAIL
 export DEPLOY_COMPRESSION=${DEPLOY_COMPRESSION:-zip}
 export COMPRESSION_LEVEL=${COMPRESSION_LEVEL:-6}
 export LOG_FILE="${WORK_DIR}/build.log"
